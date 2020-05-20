@@ -3,6 +3,8 @@ import ChatList from "../ChatList";
 import ChatWindow from "../ChatWindow";
 import io from "socket.io-client"
 
+const _ENDPOINT = process.env.REACT_APP_ENDPOINT || 'http://localhost:5000';
+
 export default function ChatApp(props) {
 
   let [users, setUsers] = useState([]);
@@ -13,7 +15,7 @@ export default function ChatApp(props) {
   let socketRef = useRef(null);
 
   useEffect(() => {
-    const socket = io('http://localhost:5000');
+    const socket = io(_ENDPOINT);
 
     socket.emit('register', { username }, (error) => {
       if (error) { alert(error); }
@@ -21,7 +23,8 @@ export default function ChatApp(props) {
 
     socket.on('users', data => {
       console.log('users:', data);
-      setUsers(data);
+      let users = data.filter(u => u.username !== username)
+      setUsers(users);
     });
 
     socket.on('message', data => {
@@ -31,6 +34,19 @@ export default function ChatApp(props) {
 
     socketRef.current = socket;
   }, [username]);
+
+  useEffect(() => {
+    if (active.username) {
+      let user = users.find(u => u.username === active.username);
+      if (!user) {
+        users.length ? setActive(users[0]) : setActive({});
+        // if (users.length == 2)
+        //   users[0].username !== username ? setActive(users[0]) : setActive(users[1]);
+        // else
+        //   setActive({});
+      }
+    }
+  }, [users, active])
 
   function handleMessage(message) {
     const socket = socketRef.current;
