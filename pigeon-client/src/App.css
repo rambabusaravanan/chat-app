@@ -1,0 +1,104 @@
+#root {
+  height: 100%;
+}
+.Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.App {
+  width: 100%;
+  height: 100%;
+  height: calc(100% - 64px);
+  max-width: 800px;
+  margin: auto 32px;
+  background-color: antiquewhite;
+  border-radius: 5px;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Register */
+.Register * {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  border: 1px solid lightgrey;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+
+/* ChatList */
+.ChatList {
+  flex: 0.3;
+  background-color: wheat;
+}
+.ChatListItem {
+  padding: 16px;
+  border-bottom: 1px solid goldenrod;
+}
+.ChatListItem.active {
+  background-color: goldenrod;
+}
+/* ChatWindow */
+.ChatWindowPlaceholder {
+  flex: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: darkgray;
+}
+.ChatWindow {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.InputPane {
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  background: snow;
+  border: 5px solid antiquewhite;
+  border-radius: 5px;
+  display: flex;
+}
+.InputPane input {
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+  flex: 1;
+}
+.InputPane button {
+  width: 80px;
+  height: 29px;
+  background: wheat;
+  border: none;
+  margin-left: auto;
+  transition: 0.2s all;
+  outline: 2px solid transparent;
+}
+.InputPane button:hover,
+.InputPane button:focus {
+  background: goldenrod;
+}
+.MessagePane {
+  padding: 16px;
+}
+.MessageItem {
+  margin-bottom: 16px;
+}
+.MessageItem.self {
+  text-align: right;
+}
+.message {
+  background-color: white;
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 0.8em;
+}
